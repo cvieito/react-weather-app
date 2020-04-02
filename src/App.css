@@ -1,0 +1,8 @@
+footer {
+  font-size: 12px;
+}
+
+.weather-app-wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+}

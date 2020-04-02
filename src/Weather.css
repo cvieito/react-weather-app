@@ -1,68 +1,81 @@
-form {
+.Weather {
+  border-radius: 10px;
+  background: linear-gradient(180deg, #54a6db 0%, #73bae1 100%);
+  box-shadow: 2px 2px 2px 1px #c7cfd4;
+  padding: 20px 30px;
+  text-align: center;
+  color: white;
+}
+
+.Weather form {
   margin-bottom: 10px;
 }
 
-h1,
+.Weather input[type="search"] {
+  font-style: italic;
+  font-weight: lighter;
+  box-shadow: none;
+}
+
+.Weather input[type="search"]:focus {
+  font-style: italic;
+  font-weight: lighter;
+  box-shadow: none;
+}
+
+.Weather button {
+  color: #ffffff;
+  background-color: transparent;
+  border: transparent;
+  margin-left: -20px;
+}
+
+.Weather button:hover {
+  background-color: transparent;
+  color: #c7cfd4;
+}
+
+.Weather h1,
 h2 {
   font-size: 30px;
   font-weight: lighter;
 }
 
-img {
+.Weather img {
   height: 70px;
 }
 
-p {
+.Weather p {
   font-weight: lighter;
 }
 
-li {
+.Weather li {
   display: inline;
   font-weight: lighter;
 }
 
-input[type="search"] {
-  font-style: italic;
-  font-weight: lighter;
-  box-shadow: none;
-}
-
-input[type="search"]:focus {
-  font-style: italic;
-  font-weight: lighter;
-  box-shadow: none;
-}
-
-.Weather {
-  max-width: 500px;
-  border-radius: 10px;
-  background: linear-gradient(
-    180deg,
-    rgba(82, 164, 219, 1) 0%,
-    rgba(115, 186, 225, 1) 100%
-  );
-  box-shadow: 2px 2px 2px 1px #c7cfd4;
-  padding: 20px 30px;
-  margin: 50px auto 10px;
-  text-align: center;
-  color: white;
-}
-
-/* .form-control:focus {
-  box-shadow: none;
-} */
-
-.weather-temperature {
+.Weather .weather-temperature {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-#btn-search {
-  margin-right: 10px;
+.Weather .units {
+  font-size: 20px;
+  margin-left: 10px;
+  font-weight: lighter;
 }
 
-#temperature {
+.Weather .units a {
+  color: #ffffff;
+}
+
+.Weather #temperature {
   font-size: 70px;
   font-weight: lighter;
+  line-height: 70px;
+}
+
+.Weather #celsius {
+  font-weight: 400;
 }

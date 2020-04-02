@@ -6,19 +6,20 @@ export default function Weather() {
     <div className="Weather">
       <form>
         <div className="row">
-          <div className="col-9">
+          <div className="col-10">
             <input
               type="search"
               placeholder="Type a city..."
               className="form-control"
+              autoFocus="on"
             />
           </div>
-          <div className="col-1.5">
+          <div className="col-1">
             <button type="submit" className="btn btn-light" id="btn-search">
               <i class="fas fa-search" />
             </button>
           </div>
-          <div className="col-1.5">
+          <div className="col-1">
             <button type="submit" className="btn btn-light" id="btn-current">
               <i class="fas fa-map-marker-alt" />
             </button>
@@ -34,16 +35,26 @@ export default function Weather() {
           className="float-left"
         ></img>
         <div className="float-left">
-          <p>
-            <span id="temperature">17°</span>
-            <a href="#">C</a> | <a href="#">F</a>
-          </p>
+          <span id="temperature">17°</span>
+        </div>
+        <div className="col units">
+          <div className="row">
+            <a href="#" id="celsius">
+              C
+            </a>
+          </div>
+          <div className="row">
+            <a href="#" id="fahrenheit">
+              F
+            </a>
+          </div>
         </div>
       </div>
       <h2>Clear</h2>
       <ul>
-        <li>Max: 21°C</li> <li>Min: 16°C</li> <li>Humidity: 63%</li>{" "}
-        <li>Wind: 15 km/h</li>{" "}
+        <li>Max: 21°C</li> <li>Min: 16°C</li>
+        <br />
+        <li>Humidity: 63%</li> <li>Wind: 15 km/h</li>{" "}
       </ul>
     </div>
   );

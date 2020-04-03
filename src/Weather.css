@@ -41,8 +41,8 @@ h2 {
   font-weight: lighter;
 }
 
-.Weather img {
-  height: 70px;
+.Weather canvas {
+  height: 60px;
 }
 
 .Weather p {

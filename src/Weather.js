@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
 import Loader from "react-loader-spinner";
 
 import "./Weather.css";
@@ -8,11 +9,10 @@ export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
 
   function handleResponse(response) {
-    console.log(response.data);
     setWeatherData({
       ready: true,
       city: response.data.name,
-      date: "Mon, 15:00",
+      date: new Date(response.data.dt * 1000),
       iconUrl: "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
       temperature: response.data.main.temp,
       description: response.data.weather[0].description,
@@ -37,12 +37,12 @@ export default function Weather(props) {
               />
             </div>
             <div className="col-1">
-              <button type="submit" className="btn btn-light" id="btn-search">
+              <button type="submit" className="btn" id="btn-search">
                 <i class="fas fa-search" />
               </button>
             </div>
             <div className="col-1">
-              <button type="submit" className="btn btn-light" id="btn-current">
+              <button type="submit" className="btn" id="btn-current">
                 <i class="fas fa-map-marker-alt" />
               </button>
             </div>
@@ -50,7 +50,7 @@ export default function Weather(props) {
         </form>
 
         <h1>{weatherData.city}</h1>
-        <p>{weatherData.date}</p>
+        <FormattedDate date={weatherData.date} />
         <div className="clearfix weather-temperature">
           <img
             src={weatherData.iconUrl}

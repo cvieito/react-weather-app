@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 import Loader from "react-loader-spinner";
+import WeatherForecast from "./WeatherForecast";
 
 import "./Weather.css";
 
@@ -66,18 +67,44 @@ export default function Weather(props) {
           </div>
         </form>
         <WeatherInfo data={weatherData} />
+        <WeatherForecast city={weatherData.city} />
       </div>
     );
   } else {
     search();
     return (
-      <Loader
-        type="TailSpin"
-        color="#c7cfd4"
-        height={50}
-        width={50}
-        timeout={3000} //3 secs
-      />
+      <div className="Weather">
+        <form onSubmit={handleSubmit}>
+          <div className="row">
+            <div className="col-10">
+              <input
+                type="search"
+                placeholder="Type a city..."
+                className="form-control"
+                autoFocus="on"
+                onChange={handleCityChange}
+              />
+            </div>
+            <div className="col-1">
+              <button type="submit" className="btn" id="btn-search">
+                <i class="fas fa-search" />
+              </button>
+            </div>
+            <div className="col-1">
+              <button type="submit" className="btn" id="btn-current">
+                <i class="fas fa-map-marker-alt" />
+              </button>
+            </div>
+          </div>
+        </form>
+        <Loader
+          type="TailSpin"
+          color="#c7cfd4"
+          height={50}
+          width={50}
+          timeout={3000} //3 secs
+        />
+      </div>
     );
   }
 }

@@ -19,12 +19,14 @@ export default function WeatherUnits(props) {
 
   if (unit === "celsius") {
     return (
-      <div className="WeatherUnits">
-        <span id="temperature">{Math.round(props.celsius)}°</span>
+      <div className="WeatherUnits row">
+        <div className="col-4">
+          <span id="temperature">{Math.round(props.celsius)}°</span>
+        </div>
 
-        <div className="col units">
+        <div className="col-4 units">
           <div className="row">
-            <span className="celsius">C</span>
+            <strong className="celsius">C</strong>
           </div>
           <div className="row">
             <a href="/" className="fahrenheit" onClick={showFahrenheit}>
@@ -36,12 +38,13 @@ export default function WeatherUnits(props) {
     );
   } else {
     return (
-      <div className="WeatherUnits">
-        <span id="temperature">{fahrenheit()}°</span>
-
-        <div className="col units">
+      <div className="WeatherUnits row">
+        <div className="col-4">
+          <span id="temperature">{fahrenheit()}°</span>
+        </div>
+        <div className="col-4 units">
           <div className="row">
-            <span className="fahrenheit">F</span>
+            <strong className="fahrenheit">F</strong>
           </div>
           <div className="row">
             <a href="/" className="celsius" onClick={showCelsius}>

@@ -41,10 +41,6 @@ h2 {
   font-weight: lighter;
 }
 
-.Weather canvas {
-  height: 60px;
-}
-
 .Weather p {
   font-weight: lighter;
 }
@@ -55,16 +51,22 @@ h2 {
 }
 
 .Weather .weather-temperature {
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.Weather .weather-temperature canvas {
+  height: 60px;
+  margin-right: -100px;
 }
 
 .Weather .units {
   font-size: 20px;
   margin-left: 10px;
   font-weight: lighter;
-  flex-grow: 0;
+  margin-left: 40px;
 }
 
 .Weather .units a {

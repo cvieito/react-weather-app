@@ -8,11 +8,11 @@ export default function WeatherInfo(props) {
     <div className="WeatherInfo">
       <h1>{props.data.city}</h1>
       <FormattedDate date={props.data.date} />
-      <div className="clearfix weather-temperature">
-        <div className="float-left">
+      <div className="weather-temperature row">
+        <div className="col-4">
           <WeatherIcon code={props.data.icon} />
         </div>
-        <div className="float-left">
+        <div className="col-8">
           <WeatherUnits celsius={props.data.temperature} />
         </div>
       </div>

@@ -1,0 +1,16 @@
+.WeatherForecast {
+  margin-top: 25px;
+}
+
+.WeatherForecast h4,
+.weather-forecast-temperature {
+  font-size: 15px;
+  font-weight: lighter;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.WeatherForecast canvas {
+  height: 40px !important;
+}

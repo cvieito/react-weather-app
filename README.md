@@ -1,4 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The design inspiration is from Anna Grenn (https://uxplanet.org/sky-inspired-weather-app-concept-4f1775ce4571) and the weather app from Windows 10.
 
 ## Available Scripts
 

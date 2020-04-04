@@ -70,7 +70,7 @@ export default function Weather(props) {
             </div>
             <div className="col-1">
               <button type="submit" className="btn" id="btn-search">
-                <i class="fas fa-search" />
+                <i className="fas fa-search" />
               </button>
             </div>
             <div className="col-1">
@@ -80,7 +80,7 @@ export default function Weather(props) {
                 id="btn-current"
                 onClick={handleLocationChange}
               >
-                <i class="fas fa-map-marker-alt" />
+                <i className="fas fa-map-marker-alt" />
               </button>
             </div>
           </div>
@@ -106,12 +106,12 @@ export default function Weather(props) {
             </div>
             <div className="col-1">
               <button type="submit" className="btn" id="btn-search">
-                <i class="fas fa-search" />
+                <i className="fas fa-search" />
               </button>
             </div>
             <div className="col-1">
               <button type="submit" className="btn" id="btn-current">
-                <i class="fas fa-map-marker-alt" />
+                <i className="fas fa-map-marker-alt" />
               </button>
             </div>
           </div>

@@ -8,7 +8,7 @@ export default function WeatherForecast(props) {
   const [forecast, setForecast] = useState(null);
 
   function handleResponse(response) {
-    setForecast(response.data.list.slice(0, 6));
+    setForecast(response.data.list.slice(0, 5));
     setLoaded(true);
   }
 
@@ -29,7 +29,7 @@ export default function WeatherForecast(props) {
       <div className="WeatherForecast row">
         {forecast.map(function(weather) {
           return (
-            <div className="col-2">
+            <div className="col">
               <h4>{formatHours(new Date(weather.dt * 1000))}</h4>
               <WeatherIcon code={weather.weather[0].icon} />
               <div className="weather-forecast-temperature">

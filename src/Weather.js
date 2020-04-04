@@ -9,6 +9,7 @@ import "./Weather.css";
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
+  const [location, setLocation] = useState(null);
 
   function handleResponse(response) {
     setWeatherData({
@@ -40,6 +41,19 @@ export default function Weather(props) {
     setCity(event.target.value);
   }
 
+  function searchLocation(position) {
+    const apiKey = "352858b872f9136668a7d5437feb3f30";
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleLocationChange(event) {
+    event.preventDefault();
+    setLocation(navigator.geolocation.getCurrentPosition(searchLocation));
+  }
+
   if (weatherData.ready) {
     return (
       <div className="Weather">
@@ -60,7 +74,12 @@ export default function Weather(props) {
               </button>
             </div>
             <div className="col-1">
-              <button type="submit" className="btn" id="btn-current">
+              <button
+                type="submit"
+                className="btn"
+                id="btn-current"
+                onClick={handleLocationChange}
+              >
                 <i class="fas fa-map-marker-alt" />
               </button>
             </div>

@@ -6,6 +6,7 @@ import axios from "axios";
 export default function WeatherForecast(props) {
   const [loaded, setLoaded] = useState(false);
   const [forecast, setForecast] = useState(null);
+  console.log(props.city);
 
   function handleResponse(response) {
     setForecast(response.data.list.slice(0, 5));
@@ -27,15 +28,13 @@ export default function WeatherForecast(props) {
   if (loaded) {
     return (
       <div className="WeatherForecast row">
-        {forecast.map(function(weather) {
+        {forecast.map(function (weather) {
           return (
             <div className="col">
               <h4>{formatHours(new Date(weather.dt * 1000))}</h4>
               <WeatherIcon code={weather.weather[0].icon} />
               <div className="weather-forecast-temperature">
-                <strong>{Math.round(weather.main.temp_max)}°</strong>
-                &nbsp;&nbsp;
-                {Math.round(weather.main.temp_min)}°
+                <p>{Math.round(weather.main.temp)}°</p>
               </div>
             </div>
           );

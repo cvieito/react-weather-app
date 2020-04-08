@@ -8,7 +8,7 @@ export default function WeatherForecast(props) {
   const [forecast, setForecast] = useState(null);
 
   function handleResponse(response) {
-    setForecast(response.data.list.slice(0, 5));
+    setForecast(response.data);
     setLoaded(true);
   }
 
@@ -24,10 +24,10 @@ export default function WeatherForecast(props) {
     return `${hours}:${minutes}`;
   }
 
-  if (loaded) {
+  if (loaded && forecast.city.name === props.city) {
     return (
       <div className="WeatherForecast row">
-        {forecast.map(function (weather) {
+        {forecast.list.slice(0, 5).map(function (weather) {
           return (
             <div className="col">
               <h4>{formatHours(new Date(weather.dt * 1000))}</h4>

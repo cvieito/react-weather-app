@@ -6,7 +6,6 @@ import axios from "axios";
 export default function WeatherForecast(props) {
   const [loaded, setLoaded] = useState(false);
   const [forecast, setForecast] = useState(null);
-  console.log(props.city);
 
   function handleResponse(response) {
     setForecast(response.data.list.slice(0, 5));

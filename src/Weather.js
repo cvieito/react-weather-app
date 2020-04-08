@@ -9,7 +9,6 @@ import "./Weather.css";
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
-  const [location, setLocation] = useState(null);
 
   function handleResponse(response) {
     setWeatherData({
@@ -22,12 +21,13 @@ export default function Weather(props) {
       maxTemp: response.data.main.temp_max,
       minTemp: response.data.main.temp_min,
       humidity: response.data.main.humidity,
-      wind: response.data.wind.speed
+      wind: response.data.wind.speed,
     });
   }
 
   function search() {
     const apiKey = "352858b872f9136668a7d5437feb3f30";
+
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
@@ -51,7 +51,7 @@ export default function Weather(props) {
 
   function handleLocationChange(event) {
     event.preventDefault();
-    setLocation(navigator.geolocation.getCurrentPosition(searchLocation));
+    navigator.geolocation.getCurrentPosition(searchLocation);
   }
 
   if (weatherData.ready) {

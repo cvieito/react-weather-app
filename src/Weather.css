@@ -14,11 +14,55 @@
 }
 
 .clear-night {
-  background: linear-gradient(
-    180deg,
-    rgba(19, 34, 90, 1) 0%,
-    rgba(150, 97, 162, 1) 100%
-  );
+  background: linear-gradient(180deg, #050305 0%, #9661a2 100%);
+}
+
+.partly-cloudy-day {
+  background: linear-gradient(180deg, #5493b2 0%, #a7bdca 100%);
+}
+
+.partly-cloudy-night {
+  background: linear-gradient(180deg, #020b1a 0%, #16213f 100%);
+}
+
+.cloudy-day {
+  background: linear-gradient(180deg, #667795 0%, #4b5c76 100%);
+}
+
+.cloudy-night {
+  background: linear-gradient(180deg, #2a3b4f 0%, #384c64 100%);
+}
+
+.rain-day {
+  background: linear-gradient(180deg, #4a5f94 0%, #384c64 100%);
+}
+
+.rain-night {
+  background: linear-gradient(180deg, #2a3b4f 0%, #384c64 100%);
+}
+
+.thunderstorm-day {
+  background: linear-gradient(180deg, #4266a4 0%, #cbaaa7 100%);
+}
+
+.thunderstorm-night {
+  background: linear-gradient(180deg, #0b060c 0%, #774160 100%);
+}
+
+.snow-day {
+  background: linear-gradient(180deg, #787c87 0%, #adb7be 100%);
+}
+
+.snow-night {
+  background: linear-gradient(180deg, #060d1d 0%, #717d85 100%);
+}
+
+.fog-day {
+  background: linear-gradient(180deg, #bb8db8 0%, #5e5e90 100%);
+}
+
+.fog-night {
+  background: linear-gradient(180deg, #18171c 0%, #715f4b 100%);
 }
 
 /*end  of background colors*/

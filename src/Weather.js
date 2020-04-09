@@ -3,14 +3,33 @@ import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 import Loader from "react-loader-spinner";
 import WeatherForecast from "./WeatherForecast";
-import WeatherIcon from "./WeatherIcon";
 
 import "./Weather.css";
 
 export default function Weather(props) {
+  const weatherMapping = {
+    "01d": "clear-day",
+    "01n": "clear-night",
+    "02d": "partly-cloudy-day",
+    "02n": "partly-cloudy-night",
+    "03d": "partly-cloudy-day",
+    "03n": "partly-cloudy-night",
+    "04d": "cloudy-day",
+    "04n": "cloudy-night",
+    "09d": "rain-day",
+    "09n": "rain-night",
+    "10d": "rain-day",
+    "10n": "rain-night",
+    "11d": "thunderstorm-day",
+    "11n": "thunderstorm-night",
+    "13d": "snow",
+    "13n": "snow",
+    "50d": "fog-day",
+    "50n": "fog-night",
+  };
+
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
-  const weatherBackground = codeMapping[index];
 
   function handleResponse(response) {
     setWeatherData({
@@ -58,7 +77,7 @@ export default function Weather(props) {
 
   if (weatherData.ready) {
     return (
-      <div className={`Weather ${weatherBackground}`}>
+      <div className={`Weather ${weatherMapping[weatherData.icon]}`}>
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-10">

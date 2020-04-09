@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import WeatherIcon from "./WeatherIcon";
-import "./WeatherForecast.css";
 import axios from "axios";
+
+import "./WeatherForecast.css";
 
 export default function WeatherForecast(props) {
   const [loaded, setLoaded] = useState(false);
@@ -27,9 +28,9 @@ export default function WeatherForecast(props) {
   if (loaded && forecast.city.name === props.city) {
     return (
       <div className="WeatherForecast row">
-        {forecast.list.slice(0, 5).map(function (weather) {
+        {forecast.list.slice(0, 5).map(function (weather, index) {
           return (
-            <div className="col">
+            <div className="col" key={index}>
               <h4>{formatHours(new Date(weather.dt * 1000))}</h4>
               <WeatherIcon code={weather.weather[0].icon} />
               <div className="weather-forecast-temperature">

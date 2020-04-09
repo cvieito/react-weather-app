@@ -3,12 +3,14 @@ import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 import Loader from "react-loader-spinner";
 import WeatherForecast from "./WeatherForecast";
+import WeatherIcon from "./WeatherIcon";
 
 import "./Weather.css";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
+  const weatherBackground = codeMapping[index];
 
   function handleResponse(response) {
     setWeatherData({
@@ -56,7 +58,7 @@ export default function Weather(props) {
 
   if (weatherData.ready) {
     return (
-      <div className="Weather">
+      <div className={`Weather ${weatherBackground}`}>
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-10">

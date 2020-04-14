@@ -1,6 +1,6 @@
 .Weather {
   border-radius: 10px;
-  /* background: linear-gradient(180deg, #54a6db 0%, #73bae1 100%); */
+  background: linear-gradient(180deg, #54a6db 0%, #73bae1 100%);
   box-shadow: 2px 2px 2px 1px #c7cfd4;
   padding: 20px 30px;
   text-align: center;
@@ -124,21 +124,22 @@ h2 {
 
 .Weather .units {
   font-size: 20px;
-  margin-left: 10px;
+  margin-left: 300px;
+  margin-bottom: -10px;
   font-weight: lighter;
-  margin-left: 40px;
 }
 
 .Weather .units a {
+  color: #bbbbbb;
+}
+
+.Weather .units .active {
+  font-weight: 500;
   color: #ffffff;
 }
 
-.Weather #temperature {
+.Weather #current-temperature {
   font-size: 70px;
   font-weight: lighter;
   line-height: 70px;
-}
-
-.Weather #celsius {
-  font-weight: 400;
 }

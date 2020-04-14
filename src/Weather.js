@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 import Loader from "react-loader-spinner";
@@ -31,35 +31,67 @@ export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
 
+  const [input, setInput] = useState("null");
+  const [units, setUnits] = useState("metric");
+  const [fahrenheit, setFahrenheit] = useState("inactive fahrenheit");
+  const [celsius, setCelsius] = useState("active celsius");
+
+  const [temperatureUnits, setTemperatureUnits] = useState("C");
+
+  function displayImperialUnits(event) {
+    event.preventDefault();
+    setUnits("imperial");
+    setFahrenheit("active fahrenheit");
+    setCelsius("inactive celsius");
+    setTemperatureUnits("F");
+  }
+
+  function displayMetricUnits(event) {
+    event.preventDefault();
+    setUnits("metric");
+    setFahrenheit("inactive fahrenheit");
+    setCelsius("active celsius");
+    setTemperatureUnits("C");
+  }
+
   function handleResponse(response) {
     setWeatherData({
       ready: true,
       city: response.data.name,
       date: new Date(response.data.dt * 1000),
       icon: response.data.weather[0].icon,
-      temperature: response.data.main.temp,
+      temperature: Math.round(response.data.main.temp),
       description: response.data.weather[0].description,
-      maxTemp: response.data.main.temp_max,
-      minTemp: response.data.main.temp_min,
+      maxTemp: Math.round(response.data.main.temp_max),
+      minTemp: Math.round(response.data.main.temp_min),
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
     });
   }
 
-  function search() {
-    const apiKey = "352858b872f9136668a7d5437feb3f30";
+  useEffect(
+    function search() {
+      const apiKey = "352858b872f9136668a7d5437feb3f30";
 
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-  }
+      let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+      axios.get(apiUrl).then(handleResponse);
+    },
+    [city, units]
+  );
 
-  function handleSubmit(event) {
+  function readInput(event) {
     event.preventDefault();
-    search();
+    setInput(event.target.value);
   }
 
-  function handleCityChange(event) {
-    setCity(event.target.value);
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   search();
+  // }
+
+  function updateCity(event) {
+    event.preventDefault();
+    setCity(input);
   }
 
   function searchLocation(position) {
@@ -78,7 +110,7 @@ export default function Weather(props) {
   if (weatherData.ready) {
     return (
       <div className={`Weather ${weatherMapping[weatherData.icon]}`}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={updateCity}>
           <div className="row">
             <div className="col-10">
               <input
@@ -86,7 +118,7 @@ export default function Weather(props) {
                 placeholder="Type a city..."
                 className="form-control"
                 autoFocus="on"
-                onChange={handleCityChange}
+                onChange={readInput}
               />
             </div>
             <div className="col-1">
@@ -106,15 +138,34 @@ export default function Weather(props) {
             </div>
           </div>
         </form>
-        <WeatherInfo data={weatherData} />
-        <WeatherForecast city={weatherData.city} />
+        <div className="row units">
+          <a href="/" className={celsius} onClick={displayMetricUnits}>
+            C
+          </a>
+          &nbsp;|&nbsp;
+          <a href="/" className={fahrenheit} onClick={displayImperialUnits}>
+            F
+          </a>
+        </div>
+        <div className="row">
+          <div className="col">
+            <WeatherInfo
+              data={weatherData}
+              temperatureUnits={temperatureUnits}
+            />
+          </div>
+        </div>
+        <WeatherForecast
+          city={weatherData.city}
+          temperatureUnits={temperatureUnits}
+          units={units}
+        />
       </div>
     );
   } else {
-    search();
     return (
       <div className="Weather">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={updateCity}>
           <div className="row">
             <div className="col-10">
               <input
@@ -122,7 +173,7 @@ export default function Weather(props) {
                 placeholder="Type a city..."
                 className="form-control"
                 autoFocus="on"
-                onChange={handleCityChange}
+                onChange={readInput}
               />
             </div>
             <div className="col-1">
@@ -137,13 +188,7 @@ export default function Weather(props) {
             </div>
           </div>
         </form>
-        <Loader
-          type="TailSpin"
-          color="#c7cfd4"
-          height={50}
-          width={50}
-          timeout={3000} //3 secs
-        />
+        <Loader type="TailSpin" color="#ffffff" height={50} width={50} />
       </div>
     );
   }

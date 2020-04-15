@@ -29,6 +29,7 @@ export default function Weather(props) {
   };
 
   const [weatherData, setWeatherData] = useState({ ready: false });
+  const [forecastData, setForecastData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
 
   const [input, setInput] = useState("null");
@@ -69,6 +70,16 @@ export default function Weather(props) {
     });
   }
 
+  function handleForecast(response) {
+    setForecastData({
+      ready: true,
+      city: response.data.city.name,
+      date: new Date(response.data.list[0].dt * 1000),
+      icon: response.data.list[0].weather[0].icon,
+      temperature: Math.round(response.data.list[0].main.temp),
+    });
+  }
+
   useEffect(
     function search() {
       const apiKey = "352858b872f9136668a7d5437feb3f30";
@@ -78,6 +89,13 @@ export default function Weather(props) {
     },
     [city, units]
   );
+
+  function searchForecast() {
+    const apiKey = "352858b872f9136668a7d5437feb3f30";
+
+    let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+    axios.get(apiUrl).then(handleForecast);
+  }
 
   function readInput(event) {
     event.preventDefault();
@@ -151,7 +169,8 @@ export default function Weather(props) {
           </div>
         </div>
         <WeatherForecast
-          city={weatherData.city}
+          data={forecastData}
+          city={forecastData.city}
           temperatureUnits={temperatureUnits}
           units={units}
         />

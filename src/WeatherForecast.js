@@ -10,6 +10,7 @@ export default function WeatherForecast(props) {
 
   function handleResponse(response) {
     setForecast(response.data);
+    console.log(response.data);
     setLoaded(true);
   }
 
@@ -28,14 +29,14 @@ export default function WeatherForecast(props) {
   if (loaded && forecast.city.name === props.city) {
     return (
       <div className="WeatherForecast row">
-        {forecast.list.slice(0, 5).map(function (weather, index) {
+        {forecast.list.slice(0, 5).map(function (index) {
           return (
             <div className="col" key={index}>
-              <h4>{formatHours(new Date(weather.dt * 1000))}</h4>
-              <WeatherIcon code={weather.weather[0].icon} />
+              <h4>{formatHours(props.data.date)}</h4>
+              <WeatherIcon code={props.data.icon} />
               <div className="weather-forecast-temperature">
                 <p>
-                  {Math.round(weather.main.temp)} °{props.temperatureUnits}
+                  {props.data.temperature} °{props.temperatureUnits}
                 </p>
               </div>
             </div>

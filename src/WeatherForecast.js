@@ -5,15 +5,6 @@ import axios from "axios";
 import "./WeatherForecast.css";
 
 export default function WeatherForecast(props) {
-  // const [loaded, setLoaded] = useState(false);
-  // const [forecast, setForecast] = useState(null);
-
-  // function handleResponse(response) {
-  //   setForecast(response.data);
-  //   console.log(response.data);
-  //   setLoaded(true);
-  // }
-
   function formatHours(date) {
     let hours = date.getHours();
     if (hours < 10) {
@@ -29,7 +20,7 @@ export default function WeatherForecast(props) {
   if (props.data.ready) {
     return (
       <div className="WeatherForecast row">
-        {props.data.list.slice(0, 5).map(function (index) {
+        {props.forecast.list.slice(0, 5).map(function (weather, index) {
           return (
             <div className="col" key={index}>
               <h4>{formatHours(props.data.date)}</h4>

@@ -73,23 +73,21 @@ export default function Weather(props) {
 
   function handleForecast(response) {
     setForecastData({
+      forecast: response.data,
       ready: true,
       city: response.data.city.name,
       date: new Date(response.data.list[0].dt * 1000),
       icon: response.data.list[0].weather[0].icon,
-      temperature: Math.round(response.data.list.main.temp),
+      temperature: Math.round(response.data.list[0].main.temp),
     });
   }
 
-  useEffect(
-    function search() {
-      const apiKey = "6330f3f51cd7c7552c33127324f477db";
+  function search() {
+    const apiKey = "6330f3f51cd7c7552c33127324f477db";
 
-      let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-      axios.get(apiUrl).then(handleResponse);
-    },
-    [city, units]
-  );
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+    axios.get(apiUrl).then(handleResponse);
+  }
 
   function searchForecast() {
     const apiKey = "6330f3f51cd7c7552c33127324f477db";
@@ -170,14 +168,15 @@ export default function Weather(props) {
           </div>
         </div>
         <WeatherForecast
+          forecast={forecastData.forecast}
           data={forecastData}
-          city={forecastData.city}
           temperatureUnits={temperatureUnits}
           units={units}
         />
       </div>
     );
   } else {
+    search();
     return (
       <div className="Weather">
         <form onSubmit={updateCity}>

@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import WeatherIcon from "./WeatherIcon";
 import axios from "axios";
 
 import "./WeatherForecast.css";
 
 export default function WeatherForecast(props) {
-  const [loaded, setLoaded] = useState(false);
-  const [forecast, setForecast] = useState(null);
+  // const [loaded, setLoaded] = useState(false);
+  // const [forecast, setForecast] = useState(null);
 
-  function handleResponse(response) {
-    setForecast(response.data);
-    console.log(response.data);
-    setLoaded(true);
-  }
+  // function handleResponse(response) {
+  //   setForecast(response.data);
+  //   console.log(response.data);
+  //   setLoaded(true);
+  // }
 
   function formatHours(date) {
     let hours = date.getHours();
@@ -26,10 +26,10 @@ export default function WeatherForecast(props) {
     return `${hours}:${minutes}`;
   }
 
-  if (loaded && forecast.city.name === props.city) {
+  if (props.data.ready) {
     return (
       <div className="WeatherForecast row">
-        {forecast.list.slice(0, 5).map(function (index) {
+        {props.data.list.slice(0, 5).map(function (index) {
           return (
             <div className="col" key={index}>
               <h4>{formatHours(props.data.date)}</h4>
@@ -45,9 +45,6 @@ export default function WeatherForecast(props) {
       </div>
     );
   } else {
-    const apiKey = "352858b872f9136668a7d5437feb3f30";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&appid=${apiKey}&units=${props.units}`;
-    axios.get(apiUrl).then(handleResponse);
     return null;
   }
 }

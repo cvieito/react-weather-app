@@ -68,21 +68,22 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
     });
+    searchForecast();
   }
 
   function handleForecast(response) {
     setForecastData({
       ready: true,
       city: response.data.city.name,
-      date: new Date(response.data.list.dt * 1000),
-      icon: response.data.list.weather[0].icon,
+      date: new Date(response.data.list[0].dt * 1000),
+      icon: response.data.list[0].weather[0].icon,
       temperature: Math.round(response.data.list.main.temp),
     });
   }
 
   useEffect(
     function search() {
-      const apiKey = "352858b872f9136668a7d5437feb3f30";
+      const apiKey = "6330f3f51cd7c7552c33127324f477db";
 
       let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
       axios.get(apiUrl).then(handleResponse);
@@ -91,10 +92,10 @@ export default function Weather(props) {
   );
 
   function searchForecast() {
-    const apiKey = "352858b872f9136668a7d5437feb3f30";
+    const apiKey = "6330f3f51cd7c7552c33127324f477db";
 
-    let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
-    axios.get(apiUrl).then(handleForecast);
+    let apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+    axios.get(apiForecastUrl).then(handleForecast);
   }
 
   function readInput(event) {
@@ -108,7 +109,7 @@ export default function Weather(props) {
   }
 
   function searchLocation(position) {
-    const apiKey = "352858b872f9136668a7d5437feb3f30";
+    const apiKey = "6330f3f51cd7c7552c33127324f477db";
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;

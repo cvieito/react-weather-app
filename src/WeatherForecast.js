@@ -34,7 +34,9 @@ export default function WeatherForecast(props) {
               <h4>{formatHours(new Date(weather.dt * 1000))}</h4>
               <WeatherIcon code={weather.weather[0].icon} />
               <div className="weather-forecast-temperature">
-                <p>{Math.round(weather.main.temp)}°</p>
+                <p>
+                  {Math.round(weather.main.temp)} °{props.temperatureUnits}
+                </p>
               </div>
             </div>
           );
@@ -43,7 +45,7 @@ export default function WeatherForecast(props) {
     );
   } else {
     const apiKey = "352858b872f9136668a7d5437feb3f30";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&appid=${apiKey}&units=${props.units}`;
     axios.get(apiUrl).then(handleResponse);
     return null;
   }

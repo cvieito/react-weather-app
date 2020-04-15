@@ -84,11 +84,6 @@ export default function Weather(props) {
     setInput(event.target.value);
   }
 
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   search();
-  // }
-
   function updateCity(event) {
     event.preventDefault();
     setCity(input);

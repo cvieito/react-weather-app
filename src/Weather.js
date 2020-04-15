@@ -74,9 +74,9 @@ export default function Weather(props) {
     setForecastData({
       ready: true,
       city: response.data.city.name,
-      date: new Date(response.data.list[0].dt * 1000),
-      icon: response.data.list[0].weather[0].icon,
-      temperature: Math.round(response.data.list[0].main.temp),
+      date: new Date(response.data.list.dt * 1000),
+      icon: response.data.list.weather[0].icon,
+      temperature: Math.round(response.data.list.main.temp),
     });
   }
 

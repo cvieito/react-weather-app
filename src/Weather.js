@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 import Loader from "react-loader-spinner";
@@ -75,10 +75,6 @@ export default function Weather(props) {
     setForecastData({
       forecast: response.data,
       ready: true,
-      city: response.data.city.name,
-      date: new Date(response.data.list[0].dt * 1000),
-      icon: response.data.list[0].weather[0].icon,
-      temperature: Math.round(response.data.list[0].main.temp),
     });
   }
 

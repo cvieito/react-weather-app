@@ -11,12 +11,12 @@ export default function WeatherInfo(props) {
         <div className="col-4">
           <WeatherIcon code={props.data.icon} />
         </div>
-        <div className="col-8" id="current-temperature">
+        <div className="col-8 current-temperature">
           {props.data.temperature}°
         </div>
       </div>
       <h2 className="text-capitalize">{props.data.description}</h2>
-      <ul>
+      <ul className="more-info">
         <li>
           Max: {props.data.maxTemp} °{props.printedUnit}
         </li>

@@ -33,24 +33,24 @@ export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
 
   const [units, setUnits] = useState("metric");
-  const [fahrenheit, setFahrenheit] = useState("inactive fahrenheit");
-  const [celsius, setCelsius] = useState("active celsius");
+  const [fahrenheit, setFahrenheit] = useState("inactive");
+  const [celsius, setCelsius] = useState("active");
 
   const [printedUnit, setPrintedUnit] = useState("C");
 
   function displayImperialUnits(event) {
     event.preventDefault();
     setUnits("imperial");
-    setFahrenheit("active fahrenheit");
-    setCelsius("inactive celsius");
+    setFahrenheit("active");
+    setCelsius("inactive");
     setPrintedUnit("F");
   }
 
   function displayMetricUnits(event) {
     event.preventDefault();
     setUnits("metric");
-    setFahrenheit("inactive fahrenheit");
-    setCelsius("active celsius");
+    setFahrenheit("inactive");
+    setCelsius("active");
     setPrintedUnit("C");
   }
 

@@ -124,20 +124,26 @@ h2 {
 }
 
 .Weather .units {
+  position: relative;
+  z-index: 3000;
   font-size: 20px;
   margin-left: 260px;
   margin-bottom: -115px;
   font-weight: lighter;
-  z-index: 3000;
 }
 
 .Weather .units a {
-  color: #bbbbbb;
+  color: #ffffff;
 }
 
 .Weather .units .active {
   font-weight: 500;
   color: #ffffff;
+  cursor: default;
+}
+
+.Weather .units .active:hover {
+  text-decoration: none;
 }
 
 .Weather #current-temperature {

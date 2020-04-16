@@ -119,7 +119,7 @@ export default function Weather(props) {
     return (
       <div className={`Weather ${weatherMapping[weatherData.icon]}`}>
         <form onSubmit={updateCity}>
-          <div className="row form">
+          <div className="row">
             <div className="col-10">
               <input
                 type="search"

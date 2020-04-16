@@ -32,7 +32,6 @@ export default function Weather(props) {
   const [forecastData, setForecastData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
 
-  const [input, setInput] = useState("null");
   const [units, setUnits] = useState("metric");
   const [fahrenheit, setFahrenheit] = useState("inactive fahrenheit");
   const [celsius, setCelsius] = useState("active celsius");
@@ -92,14 +91,14 @@ export default function Weather(props) {
     axios.get(apiForecastUrl).then(handleForecast);
   }
 
-  function readInput(event) {
+  function handleSubmit(event) {
     event.preventDefault();
-    setInput(event.target.value);
+    search();
   }
 
-  function updateCity(event) {
+  function readInput(event) {
     event.preventDefault();
-    setCity(input);
+    setCity(event.target.value);
   }
 
   function searchLocation(position) {
@@ -118,7 +117,7 @@ export default function Weather(props) {
   if (weatherData.ready) {
     return (
       <div className={`Weather ${weatherMapping[weatherData.icon]}`}>
-        <form onSubmit={updateCity}>
+        <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-10">
               <input
@@ -176,7 +175,7 @@ export default function Weather(props) {
     search();
     return (
       <div className="Weather">
-        <form onSubmit={updateCity}>
+        <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-10">
               <input

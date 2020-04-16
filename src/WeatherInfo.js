@@ -18,11 +18,11 @@ export default function WeatherInfo(props) {
       <h2 className="text-capitalize">{props.data.description}</h2>
       <ul>
         <li>
-          Max: {props.data.maxTemp} °{props.temperatureUnits}
+          Max: {props.data.maxTemp} °{props.printedUnit}
         </li>
         &nbsp;&nbsp;&nbsp;
         <li>
-          Min: {props.data.minTemp} °{props.temperatureUnits}
+          Min: {props.data.minTemp} °{props.printedUnit}
         </li>
         <br />
         <li>Humidity: {props.data.humidity}%</li>&nbsp;&nbsp;&nbsp;

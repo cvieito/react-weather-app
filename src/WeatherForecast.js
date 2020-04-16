@@ -23,11 +23,11 @@ export default function WeatherForecast(props) {
         {props.forecast.list.slice(0, 5).map(function (weather, index) {
           return (
             <div className="col" key={index}>
-              <h4>{formatHours(weather.dt)}</h4>
+              <h4>{formatHours(weather.dt * 1000)}</h4>
               <WeatherIcon code={weather.weather[0].icon} />
               <div className="weather-forecast-temperature">
                 <p>
-                  {Math.round(weather.main.temp)} °{props.temperatureUnits}
+                  {Math.round(weather.main.temp)} °{props.printedUnit}
                 </p>
               </div>
             </div>

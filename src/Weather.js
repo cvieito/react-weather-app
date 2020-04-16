@@ -37,14 +37,14 @@ export default function Weather(props) {
   const [fahrenheit, setFahrenheit] = useState("inactive fahrenheit");
   const [celsius, setCelsius] = useState("active celsius");
 
-  const [temperatureUnits, setTemperatureUnits] = useState("C");
+  const [printedUnit, setPrintedUnit] = useState("C");
 
   function displayImperialUnits(event) {
     event.preventDefault();
     setUnits("imperial");
     setFahrenheit("active fahrenheit");
     setCelsius("inactive celsius");
-    setTemperatureUnits("F");
+    setPrintedUnit("F");
   }
 
   function displayMetricUnits(event) {
@@ -52,7 +52,7 @@ export default function Weather(props) {
     setUnits("metric");
     setFahrenheit("inactive fahrenheit");
     setCelsius("active celsius");
-    setTemperatureUnits("C");
+    setPrintedUnit("C");
   }
 
   function handleResponse(response) {
@@ -106,7 +106,7 @@ export default function Weather(props) {
     const apiKey = "6330f3f51cd7c7552c33127324f477db";
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
     axios.get(apiUrl).then(handleResponse);
   }
 
@@ -159,14 +159,15 @@ export default function Weather(props) {
           <div className="col">
             <WeatherInfo
               data={weatherData}
-              temperatureUnits={temperatureUnits}
+              units={units}
+              printedUnit={printedUnit}
             />
           </div>
         </div>
         <WeatherForecast
           forecast={forecastData.forecast}
           data={forecastData}
-          temperatureUnits={temperatureUnits}
+          printedUnit={printedUnit}
           units={units}
         />
       </div>

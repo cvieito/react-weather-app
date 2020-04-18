@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 import Loader from "react-loader-spinner";
@@ -37,6 +37,7 @@ export default function Weather(props) {
   const [celsius, setCelsius] = useState("active");
 
   const [printedUnit, setPrintedUnit] = useState("C");
+  const [printedSpeed, setPrintedSpeed] = useState("m/s");
 
   function displayImperialUnits(event) {
     event.preventDefault();
@@ -44,6 +45,7 @@ export default function Weather(props) {
     setFahrenheit("active");
     setCelsius("inactive");
     setPrintedUnit("F");
+    setPrintedSpeed("mph");
   }
 
   function displayMetricUnits(event) {
@@ -52,6 +54,7 @@ export default function Weather(props) {
     setFahrenheit("inactive");
     setCelsius("active");
     setPrintedUnit("C");
+    setPrintedSpeed("m/s");
   }
 
   function handleResponse(response) {
@@ -68,6 +71,7 @@ export default function Weather(props) {
       wind: response.data.wind.speed,
     });
     searchForecast();
+    setCity(response.data.name);
   }
 
   function handleForecast(response) {
@@ -90,6 +94,10 @@ export default function Weather(props) {
     let apiForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
     axios.get(apiForecastUrl).then(handleForecast);
   }
+
+  useEffect(() => {
+    search();
+  }, [units]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -160,6 +168,7 @@ export default function Weather(props) {
               data={weatherData}
               units={units}
               printedUnit={printedUnit}
+              printedSpeed={printedSpeed}
             />
           </div>
         </div>
@@ -172,7 +181,6 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    search();
     return (
       <div className="Weather">
         <form onSubmit={handleSubmit}>
